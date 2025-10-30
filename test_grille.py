@@ -19,20 +19,20 @@ def test_liste_grille_general():
 
 def test_affiche_1(capfd):
     g = Grille(1, 1)
-    g.affiche()
+    print(g)
     out, _ = capfd.readouterr()
     assert out == "~\n"
 
 
 def test_affiche_colonne(capfd):
     g = Grille(3, 1)
-    g.affiche()
+    print(g)
     out, _ = capfd.readouterr()
     assert out == "~\n~\n~\n"
 
 
 def test_affiche_general(capfd):
     g = Grille(3, 4)
-    g.affiche()
+    print(g)
     out, _ = capfd.readouterr()
     assert out == "~~~~\n~~~~\n~~~~\n"

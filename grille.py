@@ -6,9 +6,10 @@ class Grille:
         self.tir = "x"
         self.liste = [self.vide for _ in range(n_lignes*n_colonnes)]
 
-    def affiche(self):
+    def __str__(self):
+        string = ""
         for idx, elt in enumerate(self.liste):
             if idx % self.n_colonnes == 0 and idx != 0:
-                print("\n", end='')
-            print(elt, end='')
-        print("\n", end='')
+                string += '\n'
+            string += elt
+        return string
