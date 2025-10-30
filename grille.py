@@ -13,3 +13,20 @@ class Grille:
                 string += '\n'
             string += elt
         return string
+
+    def tirer(self, ligne, colonne):
+        try:
+            assert isinstance(ligne, int)
+            assert isinstance(colonne, int)
+        except AssertionError:
+            raise TypeError("la methode tirer() accepte seulement les entiers mais \
+elle a recu un {}".format(type(ligne).__name__ if not isinstance(ligne, int) else type(colonne).__name__))
+        try:
+            assert ligne >= 0
+            assert colonne >= 0
+            assert ligne < self.n_lignes
+            assert colonne < self.n_colonnes
+        except AssertionError:
+            raise ValueError("le tir est hors de la grille (ligne {} et colonne {} visées sur une grille à \
+{} lignes et {} colonnes)".format(ligne, colonne, self.n_lignes, self.n_colonnes))
+        self.liste[colonne + ligne * self.n_colonnes] = self.tir
