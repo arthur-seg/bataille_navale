@@ -1,6 +1,3 @@
-from bateau import Bateau
-
-
 class Grille:
     def __init__(self, n_lignes, n_colonnes):
         self.n_lignes = n_lignes
@@ -8,6 +5,7 @@ class Grille:
         self.vide = "~"
         self.tir = "x"
         self.liste = [self.vide for _ in range(n_lignes*n_colonnes)]
+        self.bateaux_ajoutes = []
 
     def __str__(self):
         string = ""
@@ -17,7 +15,7 @@ class Grille:
             string += elt
         return string
 
-    def tirer(self, ligne, colonne):
+    def tirer(self, ligne, colonne, touche='x'):
         try:
             assert isinstance(ligne, int)
             assert isinstance(colonne, int)
@@ -32,17 +30,21 @@ elle a recu un {}".format(type(ligne).__name__ if not isinstance(ligne, int) els
         except AssertionError:
             raise ValueError("le tir est hors de la grille (ligne {} et colonne {} visées sur une grille à \
 {} lignes et {} colonnes)".format(ligne, colonne, self.n_lignes, self.n_colonnes))
-        self.liste[colonne + ligne * self.n_colonnes] = self.tir
+        self.liste[colonne + ligne * self.n_colonnes] = touche
 
     def ajoute(self, bateau):
-        if not isinstance(bateau, Bateau):
-            raise TypeError("la méthode ajoute() n'accepte que des instances de la classe Bateau mais elle \
-a recu un {}".format(type(bateau).__name__))
-        else:
+        try:
+            bateau_valide = True
             liste_temp = self.liste.copy()
             for pos in bateau.positions:
                 if pos[0] < 0 or pos[0] >= self.n_lignes or pos[1] < 0 or pos[1] >= self.n_colonnes\
                    or liste_temp[pos[1] + pos[0] * self.n_colonnes] == bateau.icone:
+                    bateau_valide = False
                     break
                 liste_temp[pos[1] + pos[0] * self.n_colonnes] = bateau.icone
-            self.liste = liste_temp
+            if bateau_valide:
+                self.liste = liste_temp
+                self.bateaux_ajoutes.append(bateau)
+        except AttributeError:
+            raise TypeError("la méthode ajoute() n'accepte que des instances de la classe Bateau mais elle \
+a recu un {}".format(type(bateau).__name__))

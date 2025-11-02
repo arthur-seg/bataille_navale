@@ -59,3 +59,9 @@ def test_tirer():
     g.tirer(1, 0)
     g.tirer(1, 2)
     assert g.liste == ["~", "x", "~", "x", "~", "x"]
+
+
+def test_tirer_personalise():
+    g = Grille(1, 1)
+    g.tirer(0, 0, "o")
+    assert g.liste == ["o"]
