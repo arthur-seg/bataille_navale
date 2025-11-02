@@ -1,4 +1,4 @@
-from sous_marin import SousMarin
+from bateau import SousMarin
 from grille import Grille
 from pytest import raises
 

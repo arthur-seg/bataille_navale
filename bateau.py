@@ -33,3 +33,27 @@ class Bateau:
         except AttributeError:
             raise TypeError("la méthode coule() n'accepte que des instances de la classe Grille mais elle \
 a reçu un {}".format(type(grille).__name__))
+
+
+class PorteAvion(Bateau):
+    def __init__(self, ligne, colonne, vertical=False):
+        super().__init__(ligne, colonne, 4, vertical)
+        self._icone = '🚢'
+
+
+class SousMarin(Bateau):
+    def __init__(self, ligne, colonne, vertical=False):
+        super().__init__(ligne, colonne, 2, vertical)
+        self._icone = '🐟'
+
+
+class Croiseur(Bateau):
+    def __init__(self, ligne, colonne, vertical=False):
+        super().__init__(ligne, colonne, 3, vertical)
+        self._icone = '⛴'
+
+
+class Torpilleur(Bateau):
+    def __init__(self, ligne, colonne, vertical=False):
+        super().__init__(ligne, colonne, 2, vertical)
+        self._icone = '🚣'

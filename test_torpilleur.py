@@ -1,4 +1,4 @@
-from torpilleur import Torpilleur
+from bateau import Torpilleur
 from grille import Grille
 from pytest import raises
 

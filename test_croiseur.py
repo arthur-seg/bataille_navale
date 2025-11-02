@@ -1,4 +1,4 @@
-from croiseur import Croiseur
+from bateau import Croiseur
 from grille import Grille
 from pytest import raises
 
