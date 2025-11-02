@@ -1,4 +1,5 @@
 from bateau import Bateau
+from pytest import raises
 
 
 def test_init():
@@ -7,6 +8,17 @@ def test_init():
     assert b.colonne == 2
     assert b.longueur == 1
     assert not b.vertical
+
+
+def test_icone_getter():
+    b = Bateau(1, 1)
+    assert b.icone == '⛵'
+
+
+def test_icone_setter():
+    b = Bateau(1, 1)
+    with raises(AttributeError):
+        b.icone = "petit_bateau_qui_flotte"
 
 
 def test_positions():
