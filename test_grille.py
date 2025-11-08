@@ -42,7 +42,7 @@ def test_affichage_general(capfd):
 
 def test_tirer_typeError():
     g = Grille(2, 2)
-    with raises(TypeError, match="elle a recu un str"):
+    with raises(TypeError, match="elle a reçu un str"):
         g.tirer(1, "un")
 
 

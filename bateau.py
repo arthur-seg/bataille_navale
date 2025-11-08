@@ -31,8 +31,8 @@ class Bateau:
                         return False
                 return True
         except AttributeError:
-            raise TypeError("la méthode coule() n'accepte que des instances de la classe Grille mais elle \
-a reçu un {}".format(type(grille).__name__))
+            raise TypeError("la méthode coule() n'accepte que des instances de la classe Grille mais \
+elle a reçu un {}".format(type(grille).__name__))
 
 
 class PorteAvion(Bateau):

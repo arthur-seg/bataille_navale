@@ -21,7 +21,7 @@ class Grille:
             assert isinstance(colonne, int)
         except AssertionError:
             raise TypeError("la methode tirer() accepte seulement les entiers mais \
-elle a recu un {}".format(type(ligne).__name__ if not isinstance(ligne, int) else type(colonne).__name__))
+elle a reçu un {}".format(type(ligne).__name__ if not isinstance(ligne, int) else type(colonne).__name__))
         try:
             assert ligne >= 0
             assert colonne >= 0
@@ -33,18 +33,18 @@ elle a recu un {}".format(type(ligne).__name__ if not isinstance(ligne, int) els
         self.liste[colonne + ligne * self.n_colonnes] = touche
 
     def ajoute(self, bateau):
+        ADDING_FAILED = 1
+        ADDING_SUCCESSFUL = 0
         try:
-            bateau_valide = True
             liste_temp = self.liste.copy()
             for pos in bateau.positions:
                 if pos[0] < 0 or pos[0] >= self.n_lignes or pos[1] < 0 or pos[1] >= self.n_colonnes\
                    or liste_temp[pos[1] + pos[0] * self.n_colonnes] == bateau.icone:
-                    bateau_valide = False
-                    break
+                    return ADDING_FAILED
                 liste_temp[pos[1] + pos[0] * self.n_colonnes] = bateau.icone
-            if bateau_valide:
-                self.liste = liste_temp
-                self.bateaux_ajoutes.append(bateau)
+            self.liste = liste_temp
+            self.bateaux_ajoutes.append(bateau)
+            return ADDING_SUCCESSFUL
         except AttributeError:
             raise TypeError("la méthode ajoute() n'accepte que des instances de la classe Bateau mais elle \
-a recu un {}".format(type(bateau).__name__))
+a reçu un {}".format(type(bateau).__name__))

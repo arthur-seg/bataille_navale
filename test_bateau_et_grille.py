@@ -5,7 +5,7 @@ from pytest import raises
 
 def test_ajoute_typeError():
     g = Grille(5, 8)
-    with raises(TypeError, match="elle a recu un str"):
+    with raises(TypeError, match="elle a reçu un str"):
         g.ajoute("bateau")
     assert g.bateaux_ajoutes == []
 
