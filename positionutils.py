@@ -1,3 +1,6 @@
+from random import choice
+
+
 BATEAU_HORIZONTAL = 0
 BATEAU_VERTICAL = 1
 
@@ -26,12 +29,14 @@ class PositionsPossibles():
 
     def get_position_for(self, bateau):
         """Renvoie une position aléatoire pour le bateau spécifié. Met à jour les posisions possibles."""
-        coordonnees = self.positions_possibles[type(bateau)][bateau.vertical].pop()
+        coordonnees = choice(list(self.positions_possibles[type(bateau)][bateau.vertical]))
+        bateau.ligne = coordonnees // self.grille.n_colonnes
+        bateau.colonne = coordonnees % self.grille.n_colonnes
         for position in bateau.positions:
             for type_bateau in self.types_bateaux:
                 for i in range(type_bateau.longueur):
                     self.positions_possibles[type_bateau][BATEAU_HORIZONTAL].discard(
                         position[0] * self.grille.n_colonnes + position[1] - i)
-                    self.positions_possibles[type_bateau][BATEAU_HORIZONTAL].discard(
+                    self.positions_possibles[type_bateau][BATEAU_VERTICAL].discard(
                         (position[0] - i) * self.grille.n_colonnes + position[1])
         return coordonnees

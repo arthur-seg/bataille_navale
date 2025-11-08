@@ -22,5 +22,5 @@ def test_ajoute_torpilleur():
     g = Grille(2, 5)
     p = Torpilleur(1, 1)
     g.ajoute(p)
-    assert g.liste == ["~", "~",     "~",     "~",     "~",
-                       "~", p.icone, p.icone, "~", "~"]
+    assert g.liste == ["~ ", "~ ",   "~ ",    "~ ",  "~ ",
+                       "~ ", p.icone, p.icone, "~ ", "~ "]

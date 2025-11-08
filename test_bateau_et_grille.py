@@ -15,18 +15,18 @@ def test_ajoute_hors_jeu():
     b = Bateau(5, 2, 3)
     g.ajoute(b)
     assert g.bateaux_ajoutes == []
-    assert g.liste == ["~" for _ in range(g.n_lignes * g.n_colonnes)]
+    assert g.liste == ["~ " for _ in range(g.n_lignes * g.n_colonnes)]
 
 
 def test_ajoute_general():
     g = Grille(5, 5)
     b = Bateau(2, 2, 2)
     g.ajoute(b)
-    assert g.liste == ["~", "~", "~", "~", "~",
-                       "~", "~", "~", "~", "~",
-                       "~", "~", b.icone, b.icone, "~",
-                       "~", "~", "~", "~", "~",
-                       "~", "~", "~", "~", "~"]
+    assert g.liste == ["~ ", "~ ", "~ ", "~ ", "~ ",
+                       "~ ", "~ ", "~ ", "~ ", "~ ",
+                       "~ ", "~ ", b.icone, b.icone, "~ ",
+                       "~ ", "~ ", "~ ", "~ ", "~ ",
+                       "~ ", "~ ", "~ ", "~ ", "~ "]
     assert g.bateaux_ajoutes == [b]
 
 
@@ -36,9 +36,9 @@ def test_ajoute_chevauchement():
     b2 = Bateau(1, 0, 2)
     g.ajoute(b1)
     g.ajoute(b2)
-    assert g.liste == [b1.icone, "~", "~",
-                       b1.icone, "~", "~",
-                       "~",       "~", "~"]
+    assert g.liste == [b1.icone, "~ ", "~ ",
+                       b1.icone, "~ ", "~ ",
+                       "~ ",       "~ ", "~ "]
     assert g.bateaux_ajoutes == [b1]
 
 
@@ -53,9 +53,9 @@ def test_ajoute_limite():
     g.ajoute(b3)
     g.ajoute(b4)
     assert g.liste == [b1.icone, b1.icone, b1.icone, b1.icone, b1.icone,
-                       b1.icone,    "~",     "~",      "~",    b1.icone,
-                       b1.icone,    "~",     "~",      "~",    b1.icone,
-                       b1.icone,    "~",     "~",      "~",    b1.icone,
+                       b1.icone,   "~ ",    "~ ",     "~ ",    b1.icone,
+                       b1.icone,   "~ ",    "~ ",     "~ ",    b1.icone,
+                       b1.icone,   "~ ",    "~ ",     "~ ",    b1.icone,
                        b1.icone, b1.icone, b1.icone, b1.icone, b1.icone]
     assert g.bateaux_ajoutes == [b1, b2, b3, b4]
 

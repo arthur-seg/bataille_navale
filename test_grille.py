@@ -16,28 +16,28 @@ def test_liste_grille_vide():
 
 def test_liste_grille_general():
     g = Grille(2, 3)
-    assert g.liste == ["~", "~", "~", "~", "~", "~"]
+    assert g.liste == ["~ ", "~ ", "~ ", "~ ", "~ ", "~ "]
 
 
 def test_affichage_1(capfd):
     g = Grille(1, 1)
     print(g)
     out, _ = capfd.readouterr()
-    assert out == "~\n"
+    assert out == "~ \n"
 
 
 def test_affichage_colonne(capfd):
     g = Grille(3, 1)
     print(g)
     out, _ = capfd.readouterr()
-    assert out == "~\n~\n~\n"
+    assert out == "~ \n~ \n~ \n"
 
 
 def test_affichage_general(capfd):
     g = Grille(3, 4)
     print(g)
     out, _ = capfd.readouterr()
-    assert out == "~~~~\n~~~~\n~~~~\n"
+    assert out == "~ ~ ~ ~ \n~ ~ ~ ~ \n~ ~ ~ ~ \n"
 
 
 def test_tirer_typeError():
@@ -58,7 +58,7 @@ def test_tirer():
     g.tirer(0, 1)
     g.tirer(1, 0)
     g.tirer(1, 2)
-    assert g.liste == ["~", "x", "~", "x", "~", "x"]
+    assert g.liste == ["~ ", "x ", "~ ", "x ", "~ ", "x "]
 
 
 def test_tirer_personalise():

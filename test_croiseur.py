@@ -9,7 +9,7 @@ def test_init():
     assert p.colonne == 3
     assert p.longueur == 3
     assert not p.vertical
-    assert p.icone == '⛴'
+    assert p.icone == '⛴ '
 
 
 def test_icone_setter():
@@ -22,5 +22,5 @@ def test_ajoute_croiseur():
     g = Grille(2, 5)
     p = Croiseur(1, 1)
     g.ajoute(p)
-    assert g.liste == ["~", "~",     "~",     "~",     "~",
-                       "~", p.icone, p.icone, p.icone, "~"]
+    assert g.liste == ["~ ", "~ ",    "~ ",    "~ ",    "~ ",
+                       "~ ", p.icone, p.icone, p.icone, "~ "]
