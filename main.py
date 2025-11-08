@@ -1,13 +1,13 @@
 from grille import Grille
 import bateau as bat
-from random import randrange, shuffle
+from random import random, shuffle
 
 
 ### constantes ###
 n_lignes_grille = 8
 n_colonnes_grille = 10
-dict_bateaux = {"porte-avion": bat.PorteAvion(0, 0), "croiseur": bat.Croiseur(0, 0),
-                "torpilleur": bat.Torpilleur(0, 0), "sous-marin": bat.SousMarin(0, 0)}
+dict_bateaux = {"porte-avion": bat.PorteAvion, "croiseur": bat.Croiseur,
+                "torpilleur": bat.Torpilleur, "sous-marin": bat.SousMarin}
 echec_ajout = 1
 succes_ajout = 0
 
@@ -58,7 +58,17 @@ while reponse != 'q':
     for i in range(len_liste_grille):
         if i % n_colonnes_grille > n_colonnes_grille - dict_bateaux["sous-marin"].longueur:
             positions_possibles_sous_marin_horizontal.discard(i)
+
+    grille = Grille(n_lignes_grille, n_colonnes_grille)
     # placer les bateaux
+    bateaux = shuffle(list(dict_bateaux.values()))
+    """ while len(bateaux) > 0:
+        bateau = bateaux.pop()
+        bateau.vertical = (random() < 0.5)
+        for pos in bateau.positions:
+            idx = pos[0]*n_colonnes_grille + pos[1]
+
+        grille.ajoute(bateaux.pop()) """
     # boucle de gameplay jusqu'a la fin
     # demander une nouvelle partie
     t = [False for _ in range(len_liste_grille)]

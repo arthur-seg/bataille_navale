@@ -36,24 +36,32 @@ elle a reçu un {}".format(type(grille).__name__))
 
 
 class PorteAvion(Bateau):
+    longueur = 4
+
     def __init__(self, ligne, colonne, vertical=False):
         super().__init__(ligne, colonne, 4, vertical)
         self._icone = '🚢'
 
 
 class SousMarin(Bateau):
+    longueur = 2
+
     def __init__(self, ligne, colonne, vertical=False):
         super().__init__(ligne, colonne, 2, vertical)
         self._icone = '🐟'
 
 
 class Croiseur(Bateau):
+    longueur = 3
+
     def __init__(self, ligne, colonne, vertical=False):
         super().__init__(ligne, colonne, 3, vertical)
         self._icone = '⛴'
 
 
 class Torpilleur(Bateau):
+    longueur = 2
+
     def __init__(self, ligne, colonne, vertical=False):
         super().__init__(ligne, colonne, 2, vertical)
         self._icone = '🚣'
