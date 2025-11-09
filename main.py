@@ -2,6 +2,7 @@ from grille import Grille
 import bateau as bat
 from positionutils import PositionsPossibles
 from random import random, shuffle
+import re
 
 
 ### constantes ###
@@ -32,6 +33,23 @@ while reponse != 'q':
         bateau.colonne = pos % n_colonnes_grille
         grille.ajoute(bateau)
     # boucle de gameplay jusqu'a la fin
-    print(grille)
+    grille_utilisateur = Grille(n_lignes_grille, n_colonnes_grille) # grille affichée à l'utilisateur
+    print(grille_utilisateur)
+    result = None
+    idx_tir = -1
+    while result is None or idx_tir < 0 or idx_tir >= len_liste_grille:
+        tir_utilisateur = input("où tirer, capitaine ?\nentrez la ligne puis la colonne\n")
+        if tir_utilisateur == 'q':
+            quit()
+        pattern = re.compile("\(?(\d+)[ ,;]+(\d+)\)?")
+        result = pattern.fullmatch(tir_utilisateur)
+        if result is None:
+            print("coordonnées incompréhensibles. Réessayez.")
+        else:
+            ligne_tir = result.group(1)
+            colonne_tir = result.group(2)
+            idx_tir = ligne_tir * n_colonnes_grille + colonne_tir
+            if idx_tir >= len_liste_grille:
+                print("ce tir est hors de la grille !")
     # demander une nouvelle partie
     reponse = input("?\n")    #### PAS ENLEVER
